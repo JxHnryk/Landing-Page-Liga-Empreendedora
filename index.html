@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Liga Empreendedora da UFBA – Empreender na prática</title>
+  <meta name="description" content="Movimento universitário de inovação: projetos, mentorias, hackathons e networking. Inscreva-se no PROSEL." />
+  <meta property="og:title" content="Liga Empreendedora da UFBA – Empreender na prática" />
+  <meta property="og:description" content="Movimento universitário de inovação: projetos, mentorias, hackathons e networking. Inscreva-se no PROSEL." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-banner.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Nunito+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    /* =========================
+       1) DESIGN SYSTEM (tokens)
+       ========================= */
+    :root {
+      /* Cores (preenchi --brand-end ausente e criei um gradiente separado de --bg-page) */
+      --brand-start: #F7FCFF;
+      --brand-end: #238DA9;
+      --bg-gradient: linear-gradient(90deg, var(--brand-start), var(--brand-end));
+      --bg-page: #F7FCFF;
+      --fg: #0D1B2A;
+      --muted: #6B7280;
+      --card: #FFFFFF;
+      --border: #E5E7EB;
+      --accent: #238DA9;
+      --accent-contrast: #FFFFFF;
+
+      /* Tipografia */
+      --font-display: "Nunito Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      --font-body: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      --h1-size: clamp(32px, 5vw, 44px);
+      --h1-line: 52px;
+      --h2-size: clamp(24px, 3.6vw, 32px);
+      --h2-line: 40px;
+      --h3-size: clamp(20px, 3vw, 24px);
+      --h3-line: 32px;
+      --body-size: 16px;
+      --body-line: 24px;
+      --small-size: 14px;
+      --small-line: 20px;
+
+      /* Raio/Bordas e Sombra */
+      --radius: 16px;
+      --radius-pill: 999px;
+      --shadow: 0 6px 20px rgba(0,0,0,0.06);
+
+      /* Espaçamento */
+      --section-pad-desktop: 88px; /* 72–96px */
+      --section-pad-mobile: 56px;  /* 48–64px */
+      --gutter: 22px;              /* 20–24px */
+      --maxw: 1120px;
+
+      /* Transições */
+      --ease: cubic-bezier(.22,.61,.36,1);
+      --dur: 220ms;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--fg);
+      background: var(--bg-page);
+      line-height: var(--body-line);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* =========================
+       2) Header / Navegação
+       ========================= */
+    header.site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), height var(--dur) var(--ease);
+    }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; }
+    .brand img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; }
+    nav ul { list-style: none; display: none; gap: 18px; padding: 0; margin: 0; }
+    nav a { color: var(--fg); opacity: .9; font-weight: 500; }
+    nav a:hover { opacity: 1; }
+
+    .cta-inscrever { margin-left: 10px; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 18px; border-radius: var(--radius-pill); font-weight: 600; border: 1px solid transparent; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease); cursor: pointer; }
+    .btn-primary { background: var(--accent); color: var(--accent-contrast); box-shadow: var(--shadow); }
+    .btn-primary:hover { filter: brightness(0.92); }
+    .btn-outline { background: transparent; color: var(--accent); border-color: var(--accent); }
+    .btn-outline:hover { background: rgba(35,141,169,0.08); }
+
+    .mobile-toggle { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); }
+
+    @media (min-width: 980px) {
+      nav ul { display: flex; }
+      .mobile-toggle { display: none; }
+    }
+
+    /* Shrink on scroll */
+    .shrink .nav-wrap { height: 64px; }
+
+    /* =========================
+       3) Hero
+       ========================= */
+    .hero {
+      background: var(--bg-gradient);
+      color: #05202A;
+      position: relative;
+      overflow: clip;
+    }
+    .hero::after { /* textura sutil */
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(1200px 600px at 90% -10%, rgba(255,255,255,0.28), transparent 60%),
+                  radial-gradient(900px 500px at -10% 110%, rgba(255,255,255,0.18), transparent 60%);
+    }
+    .hero-inner { padding: var(--section-pad-mobile) 0; }
+    .hero h1 { font-family: var(--font-display); font-size: var(--h1-size); line-height: var(--h1-line); margin: 0 0 12px; }
+    .hero p.sub { margin: 0 0 22px; max-width: 700px; font-size: 18px; }
+    .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero .microcopy { margin-top: 18px; color: #083242; font-size: var(--small-size); }
+    .hero .art { margin-top: 28px; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: #e8f6fb; }
+
+    @media (min-width: 980px) {
+      .hero-inner { padding: var(--section-pad-desktop) 0; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 40px; }
+    }
+
+    /* =========================
+       Sections base
+       ========================= */
+    section { padding: var(--section-pad-mobile) 0; }
+    @media (min-width: 980px) { section { padding: var(--section-pad-desktop) 0; } }
+    .section-title { font-family: var(--font-display); font-size: var(--h2-size); line-height: var(--h2-line); margin: 0 0 12px; }
+    .section-sub { color: var(--muted); margin: 0 0 28px; }
+
+    .grid {
+      display: grid; gap: 18px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 720px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 980px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+    .metric { text-align: center; padding: 26px 18px; }
+    .metric .num { font-family: var(--font-display); font-size: 36px; }
+    .metric .label { color: var(--muted); margin-top: 6px; }
+
+    /* Valores */
+    .value-icon { width: 44px; height: 44px; border-radius: 12px; background: #eef7fb; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+
+    /* Projetos */
+    .project-card img { border-radius: 12px; }
+    .project-card h3 { margin: 12px 0 6px; font-size: var(--h3-size); line-height: var(--h3-line); }
+    .project-card p { margin: 0; color: var(--muted); }
+    .project-card a { margin-top: 10px; display: inline-flex; gap: 8px; color: var(--accent); font-weight: 600; }
+
+    /* Depoimentos */
+    .testimonials { position: relative; }
+    .carousel { display: flex; gap: 18px; overflow: hidden; scroll-behavior: smooth; }
+    .testimonial {
+      min-width: 320px; flex: 0 0 320px; max-width: 100%;
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow);
+    }
+    .avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+    .testimonial header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .carousel-controls { display: flex; gap: 10px; margin-top: 12px; }
+
+    /* CTA final */
+    .cta {
+      background: var(--bg-gradient);
+      border: 1px solid var(--border);
+      border-left: 0; border-right: 0;
+    }
+    .cta .card { background: rgba(255,255,255,0.9); backdrop-filter: saturate(120%) blur(8px); }
+
+    /* FAQ */
+    .faq details { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; background: var(--card); }
+    .faq details + details { margin-top: 10px; }
+    .faq summary { cursor: pointer; font-weight: 600; }
+    .faq p { color: var(--muted); margin: 8px 0 0; }
+
+    /* Contato */
+    .contact .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+    .contact a.link { color: var(--accent); font-weight: 600; }
+
+    /* Rodapé */
+    footer { padding: 28px 0; border-top: 1px solid var(--border); background: #FBFEFF; }
+    .footer-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 720px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+    .legal { color: var(--muted); font-size: var(--small-size); margin-top: 8px; }
+
+    /* Acesso / Focus */
+    :focus-visible { outline: 3px solid #94d9ea; outline-offset: 2px; border-radius: 6px; }
+
+  </style>
+</head>
+<body>
+  <!-- 2) NAV -->
+  <header class="site-header" aria-label="Cabeçalho">
+    <div class="container nav-wrap">
+      <a href="#topo" class="brand" aria-label="Ir para o topo">
+        <img src="/logo-liga.png" alt="Logo da Liga Empreendedora" />
+        <span>Liga Empreendedora</span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#impacto">Impacto</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li class="cta-inscrever"><a class="btn btn-primary" href="#cta-prosel">Inscreva-se</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <!-- 3) HERO -->
+  <main id="topo">
+    <section class="hero" aria-label="Topo / Hero">
+      <div class="container hero-inner">
+        <div>
+          <h1>Liga Empreendedora da UFBA</h1>
+          <p class="sub">Movimento universitário que conecta jovens ao empreendedorismo e à inovação prática.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#cta-prosel">Inscreva-se</a>
+            <a class="btn btn-outline" href="https://www.instagram.com/ligaempreendedoraufba/" target="_blank" rel="noopener">Conheça mais</a>
+          </div>
+          <div class="microcopy">Comunidade ativa desde 2023 • Eventos, mentorias e projetos reais</div>
+        </div>
+        <div class="art">
+          <img src="/hero.jpg" alt="Estudantes colaborando em um evento de inovação" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) SOBRE -->
+    <section id="sobre" aria-labelledby="sobre-title">
+      <div class="container">
+        <h2 id="sobre-title" class="section-title">Sobre a Liga</h2>
+        <p class="section-sub">Nossa missão é <strong>criar, capacitar e conectar líderes empreendedores</strong>. Somos um movimento de jovens que constroem o futuro e moldam o ecossistema por meio de <strong>ideias inovadoras, lideranças disruptivas e execução prática</strong>.</p>
+
+        <div class="grid grid-3">
+          <article class="card">
+            <div class="value-icon" aria-hidden="true">🚀</div>
+            <h3 class="h3">Talentos Insanos</h3>
+            <p>Fazer parte da Liga é ser um talento insano: as melhores ideias, coragem para arriscar e aprender com velocidade.</p>
+          </article>
+          <article class="card">
+            <div class="value-icon" aria-hidden="true">🧠</div>
+            <h3 class="h3">Nós somos a Matrix</h3>
+            <p>Tudo conspira a favor de quem cria. Somos protagonistas: pensamos, executamos e puxamos o ritmo.</p>
+          </article>
+          <article class="card">
+            <div class="value-icon" aria-hidden="true">🧭</div>
+            <h3 class="h3">Isso (Não) é estratégico</h3>
+            <p>Aberto a debate com foco em estratégia. Questionamos o óbvio e escolhemos o que gera impacto real.</p>
+          </article>
+          <article class="card">
+            <div class="value-icon" aria-hidden="true">🧹</div>
+            <h3 class="h3">Se o chão está sujo, limpe</h3>
+            <p>Tomamos ação rápido. Problema visto é problema resolvido: menos desculpas, mais execução.</p>
+          </article>
+          <article class="card">
+            <div class="value-icon" aria-hidden="true">🌍</div>
+            <h3 class="h3">Impactar é o nosso negócio</h3>
+            <p>Medimos impacto: pessoas transformadas, projetos entregues, parcerias reais e legado no ecossistema.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) IMPACTO -->
+    <section id="impacto" aria-labelledby="impacto-title">
+      <div class="container">
+        <h2 id="impacto-title" class="section-title">Impacto em Números</h2>
+        <p class="section-sub">Resultados que mostram nossa intensidade e consistência.</p>
+        <div class="grid grid-3">
+          <div class="card metric">
+            <div class="num" data-count="2000">0</div>
+            <div class="label">Estudantes impactados</div>
+          </div>
+          <div class="card metric">
+            <div class="num" data-count="500">0</div>
+            <div class="label">Alunos mentorados</div>
+          </div>
+          <div class="card metric">
+            <div class="num" data-count="20">0</div>
+            <div class="label">Projetos desenvolvidos</div>
+          </div>
+          <div class="card metric">
+            <div class="num" data-count="15">0</div>
+            <div class="label">Empresas parceiras</div>
+          </div>
+          <div class="card metric">
+            <div class="num" data-count="20">0</div>
+            <div class="label">Pódios em hackathons</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) PROJETOS -->
+    <section id="projetos" aria-labelledby="projetos-title">
+      <div class="container">
+        <h2 id="projetos-title" class="section-title">Projetos e Atividades</h2>
+        <p class="section-sub">Aprendizado prático com desafios reais, mentores e comunidade.</p>
+
+        <div class="grid grid-3">
+          <article class="project-card card">
+            <img src="/proj-hackathon.jpg" alt="Equipe apresentando solução em um hackathon" />
+            <h3>Hackathons</h3>
+            <p>Competições intensas para resolver problemas reais e acelerar o aprendizado pela prática.</p>
+            <a href="#" aria-label="Ver fotos/relatos de Hackathons">Ver fotos/relatos →</a>
+          </article>
+          <article class="project-card card">
+            <img src="/proj-workshop.jpg" alt="Workshop com alunos aprendendo habilidades de empreendedorismo" />
+            <h3>Workshops</h3>
+            <p>Hard e soft skills para empreender com método, colaboração e visão de produto.</p>
+            <a href="#" aria-label="Ver fotos/relatos de Workshops">Ver fotos/relatos →</a>
+          </article>
+          <article class="project-card card">
+            <img src="/proj-networking.jpg" alt="Momento de networking entre estudantes e mentores" />
+            <h3>Networking</h3>
+            <p>Conexões com empreendedores, professores e mercado para abrir portas e acelerar projetos.</p>
+            <a href="#" aria-label="Ver fotos/relatos de Networking">Ver fotos/relatos →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7) DEPOIMENTOS -->
+    <section id="depoimentos" class="testimonials" aria-labelledby="depo-title">
+      <div class="container">
+        <h2 id="depo-title" class="section-title">Depoimentos</h2>
+        <div class="carousel" id="carousel">
+          <article class="testimonial">
+            <header>
+              <img class="avatar" src="/avatar1.jpg" alt="Foto de Ana, ex-membra" />
+              <div>
+                <strong>Ana Souza</strong><br/>
+                <small>Adm • 2024</small>
+              </div>
+            </header>
+            <p>Participar da Liga mudou minha forma de executar projetos – saí do teórico para o prático, com mentoria e networking de verdade.</p>
+          </article>
+          <article class="testimonial">
+            <header>
+              <img class="avatar" src="/avatar2.jpg" alt="Foto de Prof. Carlos" />
+              <div>
+                <strong>Prof. Carlos</strong><br/>
+                <small>Docente UFBA</small>
+              </div>
+            </header>
+            <p>Como professor, vi alunos ganharem protagonismo e maturidade. A parceria com a Liga eleva o nível das disciplinas.</p>
+          </article>
+          <article class="testimonial">
+            <header>
+              <img class="avatar" src="/avatar3.jpg" alt="Foto de Júlia, parceira" />
+              <div>
+                <strong>Júlia Lima</strong><br/>
+                <small>Parceira • Startup X</small>
+              </div>
+            </header>
+            <p>A Liga entrega. Projetos com dono, prazos e resultados. É raro ver tanta execução consistente em ambiente universitário.</p>
+          </article>
+        </div>
+        <div class="carousel-controls">
+          <button class="btn btn-outline" id="prev">←</button>
+          <button class="btn btn-outline" id="next">→</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8) CTA FINAL -->
+    <section id="cta-prosel" class="cta" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="card">
+          <h2 id="cta-title" class="section-title">Seja protagonista da própria história.</h2>
+          <p class="section-sub">Participe do nosso processo seletivo e aprenda empreendedorismo e inovação na prática.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://forms.gle/" target="_blank" rel="noopener">Inscreva-se no PROSEL</a>
+            <a class="btn btn-outline" href="#contato">Torne-se parceiro</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9) FAQ -->
+    <section id="faq" class="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 id="faq-title" class="section-title">Perguntas Frequentes</h2>
+
+        <details>
+          <summary>Quem pode participar?</summary>
+          <p>Qualquer estudante da UFBA que deseja impactar o mundo ao seu redor com ideias inovadoras e construir os pilares do empreendedorismo.</p>
+        </details>
+        <details>
+          <summary>Quanto tempo de dedicação semanal?</summary>
+          <p>Segunda e quarta presencialmente, das 14h às 18h.</p>
+        </details>
+        <details>
+          <summary>Preciso ter ideia de negócio pronta?</summary>
+          <p>Não. Desenvolvemos base de empreendedorismo, liderança, pensamento criativo e inovação. A ideia pode surgir no caminho.</p>
+        </details>
+        <details>
+          <summary>Como funcionam os times e projetos?</summary>
+          <p>Cada projeto é direcionado conforme demanda. Membros têm impacto real: contato com mentores, eventos e visitas a hubs de inovação.</p>
+        </details>
+        <details>
+          <summary>Como os professores podem se envolver?</summary>
+          <p>Estamos abertos a parcerias: co-criação de aulas, mentorias e capacitações dentro das disciplinas.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- 10) CONTATO -->
+    <section id="contato" class="contact" aria-labelledby="contato-title">
+      <div class="container">
+        <h2 id="contato-title" class="section-title">Contato & Parcerias</h2>
+        <p class="section-sub">Professores e empresas: conversem com a Liga para desenvolver projetos, aulas e desafios práticos.</p>
+
+        <div class="card">
+          <p>E-mail: <a class="link" href="mailto:ligaempreendedoraufba@gmail.com">ligaempreendedoraufba@gmail.com</a></p>
+          <div class="actions">
+            <a class="btn btn-outline" href="https://wa.me/" target="_blank" rel="noopener">Fale com a Liga no WhatsApp</a>
+            <a class="btn btn-outline" href="https://www.instagram.com/ligaempreendedoraufba/" target="_blank" rel="noopener">Instagram</a>
+            <a class="btn btn-outline" href="https://www.tiktok.com/@ligaempreendedoraufba?lang=pt-BR" target="_blank" rel="noopener">TikTok</a>
+            <a class="btn btn-outline" href="https://www.linkedin.com/company/liga-empreendedora-da-ufba/posts/?feedView=all" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 11) RODAPÉ -->
+  <footer aria-label="Rodapé">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand"><img src="/logo-liga.png" alt="Logo da Liga Empreendedora" /><span>Liga Empreendedora</span></div>
+        <div class="legal">© Liga Empreendedora da UFBA, 2025. Todos os direitos reservados.</div>
+      </div>
+      <div>
+        <strong>Seções</strong><br>
+        <a href="#sobre">Sobre</a> · <a href="#impacto">Impacto</a> · <a href="#projetos">Projetos</a><br>
+        <a href="#depoimentos">Depoimentos</a> · <a href="#faq">FAQ</a> · <a href="#contato">Contato</a>
+      </div>
+      <div>
+        <strong>Legais</strong><br>
+        <a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Navegação mobile =====
+    const toggle = document.getElementById('mobileToggle');
+    const header = document.querySelector('header.site-header');
+    const navUl = document.querySelector('nav ul');
+
+    toggle?.addEventListener('click', () => {
+      const open = navUl.style.display === 'flex';
+      navUl.style.display = open ? 'none' : 'flex';
+      navUl.style.flexDirection = 'column';
+      navUl.style.gap = '12px';
+      navUl.style.marginTop = '12px';
+    });
+
+    // Shrink on scroll
+    let lastY = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      header.classList.toggle('shrink', y > 20);
+      lastY = y;
+    });
+
+    // ===== Contagem animada =====
+    const counters = document.querySelectorAll('.num[data-count]');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          if (el.dataset.done) return;
+          const target = parseInt(el.dataset.count, 10);
+          const duration = 1400; // ms
+          let start = null;
+          const step = (ts) => {
+            if (!start) start = ts;
+            const p = Math.min((ts - start) / duration, 1);
+            const val = Math.floor(p * target);
+            el.textContent = (target >= 1000 ? '+' : '') + val.toLocaleString('pt-BR');
+            if (p < 1) requestAnimationFrame(step); else el.dataset.done = '1';
+          };
+          requestAnimationFrame(step);
+          obs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(c => obs.observe(c));
+
+    // ===== Carrossel simples =====
+    const carousel = document.getElementById('carousel');
+    document.getElementById('prev').addEventListener('click', () => {
+      carousel.scrollBy({ left: -340, behavior: 'smooth' });
+    });
+    document.getElementById('next').addEventListener('click', () => {
+      carousel.scrollBy({ left: 340, behavior: 'smooth' });
+    });
+
+    // ===== Acessibilidade: reduzir movimento =====
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('*').forEach(el => el.style.scrollBehavior = 'auto');
+    }
+  </script>
+</body>
+</html>
