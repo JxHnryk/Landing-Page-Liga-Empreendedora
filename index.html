@@ -8,7 +8,8 @@
   <meta property="og:title" content="Liga Empreendedora da UFBA – Empreender na prática" />
   <meta property="og:description" content="Movimento universitário de inovação: projetos, mentorias, hackathons e networking. Inscreva-se no PROSEL." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og-banner.jpg" />
+  <!-- Usei a imagem do topo como OG por enquanto -->
+  <meta property="og:image" content="images/topo-prosel.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +19,6 @@
        1) DESIGN SYSTEM (tokens)
        ========================= */
     :root {
-      /* Cores (preenchi --brand-end ausente e criei um gradiente separado de --bg-page) */
       --brand-start: #F7FCFF;
       --brand-end: #238DA9;
       --bg-gradient: linear-gradient(90deg, var(--brand-start), var(--brand-end));
@@ -50,9 +50,9 @@
       --shadow: 0 6px 20px rgba(0,0,0,0.06);
 
       /* Espaçamento */
-      --section-pad-desktop: 88px; /* 72–96px */
-      --section-pad-mobile: 56px;  /* 48–64px */
-      --gutter: 22px;              /* 20–24px */
+      --section-pad-desktop: 88px;
+      --section-pad-mobile: 56px;
+      --gutter: 22px;
       --maxw: 1120px;
 
       /* Transições */
@@ -125,7 +125,7 @@
       position: relative;
       overflow: clip;
     }
-    .hero::after { /* textura sutil */
+    .hero::after {
       content: ""; position: absolute; inset: 0; pointer-events: none;
       background: radial-gradient(1200px 600px at 90% -10%, rgba(255,255,255,0.28), transparent 60%),
                   radial-gradient(900px 500px at -10% 110%, rgba(255,255,255,0.18), transparent 60%);
@@ -215,7 +215,7 @@
   <header class="site-header" aria-label="Cabeçalho">
     <div class="container nav-wrap">
       <a href="#topo" class="brand" aria-label="Ir para o topo">
-        <img src="/logo-liga.png" alt="Logo da Liga Empreendedora" />
+        <img src="images/logo.png" alt="Logo da Liga Empreendedora" />
         <span>Liga Empreendedora</span>
       </a>
       <nav aria-label="Navegação principal">
@@ -247,7 +247,7 @@
           <div class="microcopy">Comunidade ativa desde 2023 • Eventos, mentorias e projetos reais</div>
         </div>
         <div class="art">
-          <img src="/hero.jpg" alt="Estudantes colaborando em um evento de inovação" />
+          <img src="images/topo-prosel.png" alt="Estudantes colaborando em um evento de inovação" />
         </div>
       </div>
     </section>
@@ -326,19 +326,19 @@
 
         <div class="grid grid-3">
           <article class="project-card card">
-            <img src="/proj-hackathon.jpg" alt="Equipe apresentando solução em um hackathon" />
+            <img src="images/hackathons-eagro-2025.png" alt="Equipe apresentando solução no E-Agro 2025" />
             <h3>Hackathons</h3>
             <p>Competições intensas para resolver problemas reais e acelerar o aprendizado pela prática.</p>
             <a href="#" aria-label="Ver fotos/relatos de Hackathons">Ver fotos/relatos →</a>
           </article>
           <article class="project-card card">
-            <img src="/proj-workshop.jpg" alt="Workshop com alunos aprendendo habilidades de empreendedorismo" />
+            <img src="images/eventos-tedx.png" alt="Palestra em evento TEDx organizada pela Liga" />
             <h3>Workshops</h3>
             <p>Hard e soft skills para empreender com método, colaboração e visão de produto.</p>
             <a href="#" aria-label="Ver fotos/relatos de Workshops">Ver fotos/relatos →</a>
           </article>
           <article class="project-card card">
-            <img src="/proj-networking.jpg" alt="Momento de networking entre estudantes e mentores" />
+            <img src="images/networking-coworking.png" alt="Momento de networking em coworking" />
             <h3>Networking</h3>
             <p>Conexões com empreendedores, professores e mercado para abrir portas e acelerar projetos.</p>
             <a href="#" aria-label="Ver fotos/relatos de Networking">Ver fotos/relatos →</a>
@@ -354,7 +354,7 @@
         <div class="carousel" id="carousel">
           <article class="testimonial">
             <header>
-              <img class="avatar" src="/avatar1.jpg" alt="Foto de Ana, ex-membra" />
+              <img class="avatar" src="images/liga-talks-ton-luccas.png" alt="Foto de membro em talk com Ton Luccas" />
               <div>
                 <strong>Ana Souza</strong><br/>
                 <small>Adm • 2024</small>
@@ -364,7 +364,7 @@
           </article>
           <article class="testimonial">
             <header>
-              <img class="avatar" src="/avatar2.jpg" alt="Foto de Prof. Carlos" />
+              <img class="avatar" src="images/liga-visitas-colabore.png" alt="Visita da Liga ao Colabore" />
               <div>
                 <strong>Prof. Carlos</strong><br/>
                 <small>Docente UFBA</small>
@@ -374,7 +374,7 @@
           </article>
           <article class="testimonial">
             <header>
-              <img class="avatar" src="/avatar3.jpg" alt="Foto de Júlia, parceira" />
+              <img class="avatar" src="images/networking-coworking.png" alt="Encontro de networking da Liga" />
               <div>
                 <strong>Júlia Lima</strong><br/>
                 <small>Parceira • Startup X</small>
@@ -455,7 +455,7 @@
   <footer aria-label="Rodapé">
     <div class="container footer-grid">
       <div>
-        <div class="brand"><img src="/logo-liga.png" alt="Logo da Liga Empreendedora" /><span>Liga Empreendedora</span></div>
+        <div class="brand"><img src="images/logo.png" alt="Logo da Liga Empreendedora" /><span>Liga Empreendedora</span></div>
         <div class="legal">© Liga Empreendedora da UFBA, 2025. Todos os direitos reservados.</div>
       </div>
       <div>
