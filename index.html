@@ -119,10 +119,11 @@
     /* CTA topo (AUMENTADA 3x) */
     .cta-prosel-top {
       display: inline-flex; align-items: center; gap: 10px;
-      padding: 36px 54px;
+      /* 3x do tamanho: padding 12x18 → 36x54; fonte maior; radius mais robusto */
+      padding: 24px 36px;
       border-radius: 24px;
       font-weight: 800;
-      font-size: 1.75rem;
+      font-size: 1.5rem; /* ~28px para combinar com o aumento visual */
       letter-spacing: .2px;
       background: var(--grad-blue-cyan);
       color: #fff;
@@ -398,7 +399,7 @@
           <article class="project-card">
             <figure class="figure">
               <img class="img-cover" src="images/projetos-lexp.png" alt="Membros da Liga liderando projetos" width="640" height="640" loading="lazy" decoding="async" />
-              <span class="tag">Liga Innovation, 2024</span>
+              <span class="tag">Liga Experience, 2024</span>
             </figure>
             <h3>Liderança de Projetos</h3>
             <p>Lidere projetos próprios e deixe sua marca na Liga!</p>
