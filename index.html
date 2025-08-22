@@ -8,19 +8,14 @@
   <meta name="description" content="Movimento universitário de inovação: projetos, mentorias, hackathons e networking. Inscreva-se no PROSEL." />
   <meta property="og:title" content="Liga Empreendedora da UFBA – Empreender na prática" />
   <meta property="og:description" content="Movimento universitário de inovação: projetos, mentorias, hackathons e networking. Inscreva-se no PROSEL." />
+  <!-- Para GitHub Pages funcione em qualquer subpasta, mantemos caminhos relativos nos assets. -->
   <meta property="og:type" content="website" />
-  <!-- Dica: para preview nas redes, troque por URL ABSOLUTA, ex:
-       https://SEU-USUARIO.github.io/SEU-REPO/images/topo-prosel.png -->
-  <meta property="og:image" content="images/topo-prosel.png" />
+  <meta property="og:image" content="./images/topo-prosel.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Nunito+Sans:wght@700;800&display=swap" rel="stylesheet" />
-
-  <!-- Preload de imagens chave -->
-  <link rel="preload" as="image" href="images/topo-prosel.png" />
-  <link rel="preload" as="image" href="images/logo.png" />
 
   <style>
     :root {
@@ -88,6 +83,7 @@
     .nav-wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; }
     .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; }
     .brand img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; }
+
     nav ul { list-style: none; display: none; gap: 18px; padding: 0; margin: 0; }
     nav a { color: var(--fg); opacity: .9; font-weight: 500; }
     nav a:hover { opacity: 1; }
@@ -100,7 +96,35 @@
     .btn-outline:hover { background: rgba(35,141,169,0.08); }
     .btn-gradient { background: var(--grad-blue-cyan); color: #fff; border: 0; box-shadow: 0 10px 22px rgba(0,0,0,.14); }
     .btn-gradient:hover { transform: translateY(-1px); filter: brightness(1.03); }
-    .mobile-toggle { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); }
+
+    /* Botão hamburger sólido com animação */
+    .mobile-toggle {
+      position: relative;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      z-index: 60;
+    }
+    .mobile-toggle .hamburger,
+    .mobile-toggle .hamburger::before,
+    .mobile-toggle .hamburger::after {
+      content: "";
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--fg);
+      border-radius: 2px;
+      position: absolute;
+      transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+    }
+    .mobile-toggle .hamburger::before { transform: translateY(-6px); }
+    .mobile-toggle .hamburger::after  { transform: translateY( 6px); }
+    .mobile-open .mobile-toggle .hamburger { opacity: 0; }
+    .mobile-open .mobile-toggle .hamburger::before { transform: rotate(45deg); }
+    .mobile-open .mobile-toggle .hamburger::after  { transform: rotate(-45deg); }
 
     @media (min-width: 980px) { nav ul { display: flex; } .mobile-toggle { display: none; } }
     .shrink .nav-wrap { height: 64px; }
@@ -116,14 +140,12 @@
     .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; }
     .hero .microcopy { margin-top: 18px; color: #083242; font-size: var(--small-size); }
 
-    /* CTA topo (AUMENTADA 3x) */
     .cta-prosel-top {
       display: inline-flex; align-items: center; gap: 10px;
-      /* 3x do tamanho: padding 12x18 → 36x54; fonte maior; radius mais robusto */
       padding: 24px 36px;
       border-radius: 24px;
       font-weight: 800;
-      font-size: 1.5rem; /* ~28px para combinar com o aumento visual */
+      font-size: 1.5rem;
       letter-spacing: .2px;
       background: var(--grad-blue-cyan);
       color: #fff;
@@ -136,9 +158,9 @@
 
     /* Imagem do hero */
     .hero .art { margin-top: 18px; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: #e8f6fb; position: relative; height: auto; aspect-ratio: 16/9; }
-    @supports not (aspect-ratio: 16 / 9) { .hero .art { position: relative; } .hero .art::before { content: ""; display: block; padding-top: calc(100% * 9 / 16); } .hero .art > img { position: absolute; inset: 0; } }
+    @supports not (aspect-ratio: 16 / 9) { .hero .art::before { content: ""; display: block; padding-top: calc(100% * 9 / 16); } }
     .hero .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .img-caption { position: absolute; left: 12px; bottom: 12px; background: rgba(0,0,0,0.55); color: #fff; padding: 6px 10px; border-radius: 10px; font-size: 14px; font-weight: 600; letter-spacing: .2px; backdrop-filter: blur(2px); }
+    .img-caption { position: absolute; left: 12px; bottom: 12px; background: rgba(0,0,0,0.55); color: #fff; padding: 6px 10px; border-radius: 10px; font-size: 14px; font-weight: 600; letter-spacing: .2px; }
 
     @media (min-width: 980px) { .hero-inner { padding: var(--section-pad-desktop) 0; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 40px; } }
 
@@ -155,44 +177,44 @@
     .section-cta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; }
     .section-cta .btn { padding: 12px 20px; }
 
-    /* Cards (Sobre) */
     .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
 
     /* IMPACTO */
     #impacto { position: relative; isolation: isolate; }
-    #impacto::before {
-      content: ""; position: absolute; inset: 0;
-      background: url("images/liga-impacto.jpeg") center/cover no-repeat;
-      opacity: .22; z-index: -1;
-    }
+    #impacto::before { content: ""; position: absolute; inset: 0; background: url("./images/liga-impacto.jpeg") center/cover no-repeat; opacity: .22; z-index: -1; }
     .metric { text-align: center; padding: 26px 18px; background: rgba(255,255,255,.82); border: 1px solid rgba(229,231,235,.6); border-radius: var(--radius); box-shadow: var(--shadow); backdrop-filter: saturate(120%) blur(2px); }
     .metric .num { font-family: var(--font-display); font-size: 36px; }
     .metric .label { color: var(--muted); margin-top: 6px; }
 
-    /* PROJETOS */
-    .projects .track { display: flex; gap: 18px; overflow: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; -ms-overflow-style: none; scrollbar-width: none; }
+    /* PROJETOS (∞) */
+    .projects .track {
+      display: flex; gap: 18px; overflow: auto; scroll-snap-type: x mandatory;
+      padding-bottom: 8px; -ms-overflow-style: none; scrollbar-width: none;
+      -webkit-overflow-scrolling: touch; touch-action: pan-x pinch-zoom; overscroll-behavior-x: contain;
+    }
     .projects .track::-webkit-scrollbar { display: none; }
     .project-card { flex: 0 0 290px; scroll-snap-align: start; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
     .project-card h3 { margin: 12px 0 6px; font-size: var(--h3-size); line-height: var(--h3-line); }
     .project-card p { margin: 0; color: var(--muted); }
 
     .figure { position: relative; border-radius: 12px; overflow: hidden; height: auto; aspect-ratio: 1 / 1; background: #f4f7f9; min-height: 220px; }
-    @supports not (aspect-ratio: 1 / 1) { .figure { position: relative; } .figure::before { content: ""; display: block; padding-top: 100%; } .figure > img { position: absolute; inset: 0; } }
     .figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
     .figure .tag { position: absolute; left: 10px; bottom: 10px; background: rgba(0,0,0,.55); color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .2px; backdrop-filter: blur(2px); pointer-events: none; }
 
     .proj-controls { display: flex; gap: 10px; margin-top: 12px; justify-content: flex-end; }
 
-    /* DEPOIMENTOS */
+    /* DEPOIMENTOS (∞) */
     .testimonials { position: relative; }
-    .carousel { display: flex; gap: 18px; overflow: hidden; scroll-behavior: smooth; }
+    .carousel {
+      display: flex; gap: 18px; overflow: hidden; scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch; touch-action: pan-x pinch-zoom; overscroll-behavior-x: contain;
+    }
     .testimonial { min-width: 320px; flex: 0 0 320px; max-width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
     .avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
     .testimonial header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
     .carousel-controls { display: flex; gap: 10px; margin-top: 12px; }
 
-    /* PARCEIROS (sem retângulos) */
+    /* PARCEIROS */
     .partners { background: var(--grad-partners); border: 1px solid var(--border); border-left: 0; border-right: 0; color: #eaf7ff; }
     .partners h2 { color: #fff; text-align: center; }
     .partners .section-sub { color: rgba(255,255,255,.9); text-align: center; }
@@ -203,7 +225,7 @@
     .partner:nth-child(3) img, .partner:nth-child(7) img { width: 140px; }
     .partner:nth-child(5) img, .partner:nth-child(9) img { width: 160px; }
 
-    /* CTA FINAL (Fundo branco, após Parceiros) */
+    /* CTA FINAL */
     .cta-final { background: #FFFFFF; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .cta-final .card { background: #FFFFFF; max-width: 920px; margin: 0 auto; border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 28px; text-align: center; box-shadow: var(--shadow); }
     .cta-final .actions { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
@@ -219,10 +241,46 @@
 
     footer { padding: 28px 0; border-top: 1px solid var(--border); background: #FBFEFF; }
     .footer-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
-    @media (min-width: 720px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+    @media (min-width: 720px) { .footer-grid { grid-template-columns: 2fr 1fr; } }
     .legal { color: var(--muted); font-size: var(--small-size); margin-top: 8px; }
 
     :focus-visible { outline: 3px solid #94d9ea; outline-offset: 2px; border-radius: 6px; }
+
+    /* ===== MOBILE: ajustes do menu ===== */
+    @media (max-width: 979px) {
+      /* Esconde o botão “Inscreva-se” do menu hamburger */
+      .cta-inscrever { display: none !important; }
+    }
+
+    /* ======= MOBILE FRIENDLY: MAIS RESPIRO ======= */
+    @media (max-width: 480px) {
+      .container {
+        padding-left: max(clamp(22px, 7vw, 32px), env(safe-area-inset-left));
+        padding-right: max(clamp(22px, 7vw, 32px), env(safe-area-inset-right));
+      }
+      header.site-header .container.nav-wrap {
+        padding-left: max(clamp(16px, 6vw, 28px), env(safe-area-inset-left));
+        padding-right: max(clamp(16px, 6vw, 28px), env(safe-area-inset-right));
+      }
+      .cta-prosel-top {
+        display: inline-block;
+        font-size: 1.1rem;
+        line-height: 1.25;
+        padding-block: 14px;
+        padding-inline: clamp(22px, 8vw, 32px);
+        border-radius: 18px;
+        white-space: normal;
+        text-align: center;
+        text-wrap: balance;
+      }
+      .hero h1 { font-size: clamp(26px, 7vw, 32px); line-height: 1.15; }
+      .hero p.sub { font-size: 16px; }
+      .card, .project-card, .testimonial { padding: 18px; border-radius: 18px; }
+      .hero .actions .btn,
+      .section-cta .btn,
+      .cta-final .actions .btn,
+      .contact .actions .btn { width: 100%; justify-content: center; }
+    }
   </style>
 </head>
 <body>
@@ -230,11 +288,11 @@
   <header class="site-header" aria-label="Cabeçalho">
     <div class="container nav-wrap">
       <a href="#topo" class="brand" aria-label="Ir para o topo">
-        <img src="images/logo.png" alt="Logo da Liga Empreendedora" />
+        <img src="./images/logo.png" alt="Logo da Liga Empreendedora" />
         <span>Liga Empreendedora</span>
       </a>
       <nav aria-label="Navegação principal">
-        <ul>
+        <ul id="mainNav">
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#cta-prosel">Chamada</a></li>
           <li><a href="#impacto">Impacto</a></li>
@@ -246,7 +304,9 @@
           <li class="cta-inscrever"><a class="btn btn-primary" href="#cta-prosel">Inscreva-se</a></li>
         </ul>
       </nav>
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu">☰</button>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu" aria-controls="mainNav" aria-expanded="false">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
     </div>
   </header>
 
@@ -256,7 +316,7 @@
       <div class="container hero-inner">
         <div>
           <a class="cta-prosel-top" href="https://forms.gle/" target="_blank" rel="noopener" aria-label="Ir para o formulário do PROSEL 2025.2">
-            🚀 PROSEL 2025.2 ABERTO!
+            🚀 PROSEL 2025.2 ABERTO! (Clique aqui)
           </a>
 
           <h1>Liga Empreendedora da UFBA</h1>
@@ -268,12 +328,7 @@
           <div class="microcopy">Comunidade ativa desde 2023 • Eventos, mentorias e projetos reais</div>
         </div>
         <div class="art">
-          <img
-            src="images/topo-prosel.png"
-            alt="PROSEL 2025.1"
-            width="1280" height="720"
-            fetchpriority="high" decoding="async"
-          />
+          <img src="./images/topo-prosel.png" alt="PROSEL 2025.1" width="1280" height="720" fetchpriority="high" decoding="async" />
           <span class="img-caption">PROSEL 2025.1</span>
         </div>
       </div>
@@ -286,36 +341,14 @@
         <p class="section-sub">Nossa missão é <strong>criar, capacitar e conectar líderes empreendedores</strong>. Somos um movimento de jovens que constroem o futuro e moldam o ecossistema por meio de <strong>ideias inovadoras, lideranças disruptivas e execução prática</strong>.</p>
 
         <div class="grid grid-3">
-          <article class="card">
-            <div class="value-icon" aria-hidden="true">🚀</div>
-            <h3 class="h3">Talentos Insanos</h3>
-            <p>Fazer parte da Liga é ser um talento insano: as melhores ideias, coragem para arriscar e aprender com velocidade.</p>
-          </article>
-          <article class="card">
-            <div class="value-icon" aria-hidden="true">🧠</div>
-            <h3 class="h3">Nós somos a Matrix</h3>
-            <p>Tudo conspira a favor de quem cria. Somos protagonistas: pensamos, executamos e puxamos o ritmo.</p>
-          </article>
-          <article class="card">
-            <div class="value-icon" aria-hidden="true">🧭</div>
-            <h3 class="h3">Isso (Não) é estratégico</h3>
-            <p>Aberto a debate com foco em estratégia. Questionamos o óbvio e escolhemos o que gera impacto real.</p>
-          </article>
-          <article class="card">
-            <div class="value-icon" aria-hidden="true">🧹</div>
-            <h3 class="h3">Se o chão está sujo, limpe</h3>
-            <p>Tomamos ação rápido. Problema visto é problema resolvido: menos desculpas, mais execução.</p>
-          </article>
-          <article class="card">
-            <div class="value-icon" aria-hidden="true">🌍</div>
-            <h3 class="h3">Impactar é o nosso negócio</h3>
-            <p>Medimos impacto: pessoas transformadas, projetos entregues, parcerias reais e legado no ecossistema.</p>
-          </article>
+          <article class="card"><div class="value-icon" aria-hidden="true">🚀</div><h3 class="h3">Talentos Insanos</h3><p>Fazer parte da Liga é ser um talento insano: as melhores ideias, coragem para arriscar e aprender com velocidade.</p></article>
+          <article class="card"><div class="value-icon" aria-hidden="true">🧠</div><h3 class="h3">Nós somos a Matrix</h3><p>Tudo conspira a favor de quem cria. Somos protagonistas: pensamos, executamos e puxamos o ritmo.</p></article>
+          <article class="card"><div class="value-icon" aria-hidden="true">🧭</div><h3 class="h3">Isso (Não) é estratégico</h3><p>Aberto a debate com foco em estratégia. Questionamos o óbvio e escolhemos o que gera impacto real.</p></article>
+          <article class="card"><div class="value-icon" aria-hidden="true">🧹</div><h3 class="h3">Se o chão está sujo, limpe</h3><p>Tomamos ação rápido. Problema visto é problema resolvido: menos desculpas, mais execução.</p></article>
+          <article class="card"><div class="value-icon" aria-hidden="true">🌍</div><h3 class="h3">Impactar é o nosso negócio</h3><p>Medimos impacto: pessoas transformadas, projetos entregues, parcerias reais e legado no ecossistema.</p></article>
         </div>
 
-        <div class="section-cta">
-          <a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a>
-        </div>
+        <div class="section-cta"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
 
@@ -325,103 +358,30 @@
         <h2 id="impacto-title" class="section-title">Impacto em Números</h2>
         <p class="section-sub">Resultados que mostram nossa intensidade e consistência.</p>
         <div class="grid grid-3">
-          <div class="metric">
-            <div class="num" data-count="2000">+0</div>
-            <div class="label">Estudantes impactados</div>
-          </div>
-          <div class="metric">
-            <div class="num" data-count="500">+0</div>
-            <div class="label">Alunos mentorados</div>
-          </div>
-          <div class="metric">
-            <div class="num" data-count="20">+0</div>
-            <div class="label">Projetos desenvolvidos</div>
-          </div>
-          <div class="metric">
-            <div class="num" data-count="15">+0</div>
-            <div class="label">Empresas parceiras</div>
-          </div>
-          <div class="metric">
-            <div class="num" data-count="20">+0</div>
-            <div class="label">Pódios em hackathons</div>
-          </div>
+          <div class="metric"><div class="num" data-count="2000">+0</div><div class="label">Estudantes impactados</div></div>
+          <div class="metric"><div class="num" data-count="500">+0</div><div class="label">Alunos mentorados</div></div>
+          <div class="metric"><div class="num" data-count="20">+0</div><div class="label">Projetos desenvolvidos</div></div>
+          <div class="metric"><div class="num" data-count="15">+0</div><div class="label">Empresas parceiras</div></div>
+          <div class="metric"><div class="num" data-count="20">+0</div><div class="label">Pódios em hackathons</div></div>
         </div>
-
-        <div class="section-cta">
-          <a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a>
-        </div>
+        <div class="section-cta"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
 
-    <!-- PROJETOS -->
+    <!-- PROJETOS (∞) -->
     <section id="projetos" class="projects" aria-labelledby="projetos-title">
       <div class="container">
         <h2 id="projetos-title" class="section-title">Projetos e Atividades</h2>
         <p class="section-sub">Aprendizado prático com desafios reais, mentores e comunidade.</p>
 
         <div class="track" id="projectsTrack" aria-live="polite">
-          <article class="project-card">
-            <figure class="figure">
-              <img class="img-cover" src="images/hackathons-eagro-2025.jpeg" alt="Equipe apresentando solução em um hackathon" width="640" height="640" loading="lazy" decoding="async" />
-              <span class="tag">Liga no Eagro 2024</span>
-            </figure>
-            <h3>Hackathons</h3>
-            <p>Competições intensas para resolver problemas reais e acelerar o aprendizado pela prática.</p>
-          </article>
-
-          <article class="project-card">
-            <figure class="figure">
-              <img class="img-cover" src="images/liga-impacto.jpeg" alt="Liga Talks na UFBA" width="640" height="640" loading="lazy" decoding="async" />
-              <span class="tag">Liga Talks - Linkedin</span>
-            </figure>
-            <h3>Workshops</h3>
-            <p>Hard e soft skills para empreender com método, colaboração e visão de produto.</p>
-          </article>
-
-          <article class="project-card">
-            <figure class="figure">
-              <img class="img-cover" src="images/networking-coworking.png" alt="Momento de networking em coworking" width="640" height="640" loading="lazy" decoding="async" />
-              <span class="tag">Eaufba, coworking das Ligas</span>
-            </figure>
-            <h3>Networking</h3>
-            <p>Conexões com empreendedores, professores e mercado para abrir portas e acelerar projetos.</p>
-          </article>
-
-          <article class="project-card">
-            <figure class="figure">
-              <img class="img-cover" src="images/eventos-tedx.jpeg" alt="Participação da Liga no TedX Women" width="640" height="640" loading="lazy" decoding="async" />
-              <span class="tag">Liga no TedX Women</span>
-            </figure>
-            <h3>Eventos</h3>
-            <p>Adentre em eventos exclusivos do ecossistema inovador de Salvador.</p>
-          </article>
-
-          <article class="project-card">
-            <figure class="figure">
-              <img class="img-cover" src="images/projetos-lexp.png" alt="Membros da Liga liderando projetos" width="640" height="640" loading="lazy" decoding="async" />
-              <span class="tag">Liga Experience</span>
-            </figure>
-            <h3>Liderança de Projetos</h3>
-            <p>Lidere projetos próprios e deixe sua marca na Liga!</p>
-          </article>
-
-          <article class="project-card">
-            <figure class="figure">
-              <img class="img-cover" src="images/marmeet-marmeet.jpeg" alt="Encontro Marmeet no mezanino da EAUFBA" width="640" height="640" loading="lazy" decoding="async" />
-              <span class="tag">Marmeet – Mezanino EAUFBA</span>
-            </figure>
-            <h3>Marmeet</h3>
-            <p>Todas às quartas nos encontramos no mezanino da EAUFBA para debater.</p>
-          </article>
-
-          <article class="project-card">
-            <figure class="figure">
-              <img class="img-cover" src="images/liga-visitas-colabore.jpeg" alt="Visita da Liga ao Espaço Colabore" width="640" height="640" loading="lazy" decoding="async" />
-              <span class="tag">Liga no Espaço Colabore</span>
-            </figure>
-            <h3>Liga Visitas</h3>
-            <p>Visitas técnicas e imersões em hubs de inovação e empresas parceiras.</p>
-          </article>
+          <article class="project-card"><figure class="figure"><img class="img-cover" src="./images/hackathons-eagro-2025.jpeg" alt="Equipe apresentando solução em um hackathon" width="640" height="640" loading="lazy" decoding="async" /><span class="tag">Liga no Eagro 2024</span></figure><h3>Hackathons</h3><p>Competições intensas para resolver problemas reais e acelerar o aprendizado pela prática.</p></article>
+          <article class="project-card"><figure class="figure"><img class="img-cover" src="./images/liga-impacto.jpeg" alt="Liga Talks na UFBA" width="640" height="640" loading="lazy" decoding="async" /><span class="tag">Liga Talks - Linkedin</span></figure><h3>Workshops</h3><p>Hard e soft skills para empreender com método, colaboração e visão de produto.</p></article>
+          <article class="project-card"><figure class="figure"><img class="img-cover" src="./images/networking-coworking.png" alt="Momento de networking em coworking" width="640" height="640" loading="lazy" decoding="async" /><span class="tag">Eaufba, coworking das Ligas</span></figure><h3>Networking</h3><p>Conexões com empreendedores, professores e mercado para abrir portas e acelerar projetos.</p></article>
+          <article class="project-card"><figure class="figure"><img class="img-cover" src="./images/eventos-tedx.jpeg" alt="Participação da Liga no TedX Women" width="640" height="640" loading="lazy" decoding="async" /><span class="tag">Liga no TedX Women</span></figure><h3>Eventos</h3><p>Adentre em eventos exclusivos do ecossistema inovador de Salvador.</p></article>
+          <article class="project-card"><figure class="figure"><img class="img-cover" src="./images/projetos-lexp.png" alt="Membros da Liga liderando projetos" width="640" height="640" loading="lazy" decoding="async" /><span class="tag">Liga Experience</span></figure><h3>Liderança de Projetos</h3><p>Lidere projetos próprios e deixe sua marca na Liga!</p></article>
+          <article class="project-card"><figure class="figure"><img class="img-cover" src="./images/marmeet-marmeet.jpeg" alt="Encontro Marmeet no mezanino da EAUFBA" width="640" height="640" loading="lazy" decoding="async" /><span class="tag">Marmeet – Mezanino EAUFBA</span></figure><h3>Marmeet</h3><p>Todas às quartas nos encontramos no mezanino da EAUFBA para debater.</p></article>
+          <article class="project-card"><figure class="figure"><img class="img-cover" src="./images/liga-visitas-colabore.jpeg" alt="Visita da Liga ao Espaço Colabore" width="640" height="640" loading="lazy" decoding="async" /><span class="tag">Liga no Espaço Colabore</span></figure><h3>Liga Visitas</h3><p>Visitas técnicas e imersões em hubs de inovação e empresas parceiras.</p></article>
         </div>
 
         <div class="proj-controls">
@@ -429,86 +389,52 @@
           <button class="btn btn-outline" id="projNext" aria-label="Ver próximos cartões">→</button>
         </div>
 
-        <div class="section-cta">
-          <a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a>
-        </div>
+        <div class="section-cta"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
 
-    <!-- DEPOIMENTOS -->
+    <!-- DEPOIMENTOS (∞) -->
     <section id="depoimentos" class="testimonials" aria-labelledby="depo-title">
       <div class="container">
         <h2 id="depo-title" class="section-title">Depoimentos</h2>
         <div class="carousel" id="carousel">
-          <article class="testimonial">
-            <header>
-              <img class="avatar" src="images/logo.png" alt="Foto de perfil" />
-              <div>
-                <strong>Ana Souza</strong><br/>
-                <small>Adm • 2024</small>
-              </div>
-            </header>
-            <p>Participar da Liga mudou minha forma de executar projetos – saí do teórico para o prático, com mentoria e networking de verdade.</p>
-          </article>
-          <article class="testimonial">
-            <header>
-              <img class="avatar" src="images/liga-visitas-colabore.jpeg" alt="Foto de Prof. Carlos" />
-              <div>
-                <strong>Prof. Carlos</strong><br/>
-                <small>Docente UFBA</small>
-              </div>
-            </header>
-            <p>Como professor, vi alunos ganharem protagonismo e maturidade. A parceria com a Liga eleva o nível das disciplinas.</p>
-          </article>
-          <article class="testimonial">
-            <header>
-              <img class="avatar" src="images/networking-coworking.png" alt="Foto de Júlia, parceira" />
-              <div>
-                <strong>Júlia Lima</strong><br/>
-                <small>Parceira • Startup X</small>
-              </div>
-            </header>
-            <p>A Liga entrega. Projetos com dono, prazos e resultados. É raro ver tanta execução consistente em ambiente universitário.</p>
-          </article>
+          <article class="testimonial"><header><img class="avatar" src="./images/logo.png" alt="Foto de perfil" /><div><strong>Ana Souza</strong><br/><small>Adm • 2024</small></div></header><p>Participar da Liga mudou minha forma de executar projetos – saí do teórico para o prático, com mentoria e networking de verdade.</p></article>
+          <article class="testimonial"><header><img class="avatar" src="./images/liga-visitas-colabore.jpeg" alt="Foto de Prof. Carlos" /><div><strong>Prof. Carlos</strong><br/><small>Docente UFBA</small></div></header><p>Como professor, vi alunos ganharem protagonismo e maturidade. A parceria com a Liga eleva o nível das disciplinas.</p></article>
+          <article class="testimonial"><header><img class="avatar" src="./images/networking-coworking.png" alt="Foto de Júlia, parceira" /><div><strong>Júlia Lima</strong><br/><small>Parceira • Startup X</small></div></header><p>A Liga entrega. Projetos com dono, prazos e resultados. É raro ver tanta execução consistente em ambiente universitário.</p></article>
         </div>
         <div class="carousel-controls">
           <button class="btn btn-outline" id="prev" aria-label="Voltar depoimentos">←</button>
           <button class="btn btn-outline" id="next" aria-label="Avançar depoimentos">→</button>
         </div>
-
-        <div class="section-cta">
-          <a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a>
-        </div>
+        <div class="section-cta"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
 
-    <!-- NOSSOS PARCEIROS (sem retângulos) -->
+    <!-- NOSSOS PARCEIROS -->
     <section id="parceiros" class="partners" aria-labelledby="parceiros-title">
       <div class="container">
         <h2 id="parceiros-title" class="section-title">Nossos parceiros</h2>
         <p class="section-sub">Um ecossistema que acelera ideias: marcas que acreditam na Liga.</p>
 
         <div class="partner-cloud">
-          <div class="partner"><img src="images/marca-1.png" alt="Marca 1"></div>
-          <div class="partner"><img src="images/marca-2.png" alt="Marca 2"></div>
-          <div class="partner"><img src="images/marca-3.png" alt="Marca 3"></div>
-          <div class="partner"><img src="images/marca-4.png" alt="Marca 4"></div>
-          <div class="partner"><img src="images/marca-5.png" alt="Marca 5"></div>
-          <div class="partner"><img src="images/marca-6.png" alt="Marca 6"></div>
-          <div class="partner"><img src="images/marca-7.png" alt="Marca 7"></div>
-          <div class="partner"><img src="images/marca-8.png" alt="Marca 8"></div>
-          <div class="partner"><img src="images/marca-9.png" alt="Marca 9"></div>
-          <div class="partner"><img src="images/marca-10.png" alt="Marca 10"></div>
-          <div class="partner"><img src="images/marca-11.png" alt="Marca 11"></div>
+          <div class="partner"><img src="./images/marca-1.png" alt="Marca 1"></div>
+          <div class="partner"><img src="./images/marca-2.png" alt="Marca 2"></div>
+          <div class="partner"><img src="./images/marca-3.png" alt="Marca 3"></div>
+          <div class="partner"><img src="./images/marca-4.png" alt="Marca 4"></div>
+          <div class="partner"><img src="./images/marca-5.png" alt="Marca 5"></div>
+          <div class="partner"><img src="./images/marca-6.png" alt="Marca 6"></div>
+          <div class="partner"><img src="./images/marca-7.png" alt="Marca 7"></div>
+          <div class="partner"><img src="./images/marca-8.png" alt="Marca 8"></div>
+          <div class="partner"><img src="./images/marca-9.png" alt="Marca 9"></div>
+          <div class="partner"><img src="./images/marca-10.png" alt="Marca 10"></div>
+          <div class="partner"><img src="./images/marca-11.png" alt="Marca 11"></div>
         </div>
 
-        <div class="section-cta" style="justify-content:center">
-          <a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a>
-        </div>
+        <div class="section-cta" style="justify-content:center"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
 
-    <!-- CTA FINAL (após Parceiros, fundo branco) -->
+    <!-- CTA FINAL -->
     <section id="cta-prosel" class="cta-final" aria-labelledby="cta-title">
       <div class="container">
         <div class="card">
@@ -526,31 +452,12 @@
     <section id="faq" class="faq" aria-labelledby="faq-title">
       <div class="container">
         <h2 id="faq-title" class="section-title">Perguntas Frequentes</h2>
-
-        <details>
-          <summary>Quem pode participar?</summary>
-          <p>Qualquer estudante da UFBA que deseja impactar o mundo ao seu redor com ideias inovadoras e construir os pilares do empreendedorismo.</p>
-        </details>
-        <details>
-          <summary>Quanto tempo de dedicação semanal?</summary>
-          <p>Segunda e quarta presencialmente, das 14h às 18h.</p>
-        </details>
-        <details>
-          <summary>Preciso ter ideia de negócio pronta?</summary>
-          <p>Não. Desenvolvemos base de empreendedorismo, liderança, pensamento criativo e inovação. A ideia pode surgir no caminho.</p>
-        </details>
-        <details>
-          <summary>Como funcionam os times e projetos?</summary>
-          <p>Cada projeto é direcionado conforme demanda. Membros têm impacto real: contato com mentores, eventos e visitas a hubs de inovação.</p>
-        </details>
-        <details>
-          <summary>Como os professores podem se envolver?</summary>
-          <p>Estamos abertos a parcerias: co-criação de aulas, mentorias e capacitações dentro das disciplinas.</p>
-        </details>
-
-        <div class="section-cta">
-          <a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a>
-        </div>
+        <details><summary>Quem pode participar?</summary><p>Qualquer estudante da UFBA que deseja impactar o mundo ao seu redor com ideias inovadoras e construir os pilares do empreendedorismo.</p></details>
+        <details><summary>Quanto tempo de dedicação semanal?</summary><p>Segunda e quarta presencialmente, das 14h às 18h.</p></details>
+        <details><summary>Preciso ter ideia de negócio pronta?</summary><p>Não. Desenvolvemos base de empreendedorismo, liderança, pensamento criativo e inovação. A ideia pode surgir no caminho.</p></details>
+        <details><summary>Como funcionam os times e projetos?</summary><p>Cada projeto é direcionado conforme demanda. Membros têm impacto real: contato com mentores, eventos e visitas a hubs de inovação.</p></details>
+        <details><summary>Como os professores podem se envolver?</summary><p>Estamos abertos a parcerias: co-criação de aulas, mentorias e capacitações dentro das disciplinas.</p></details>
+        <div class="section-cta"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
 
@@ -570,9 +477,7 @@
           </div>
         </div>
 
-        <div class="section-cta">
-          <a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a>
-        </div>
+        <div class="section-cta"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
   </main>
@@ -581,7 +486,7 @@
   <footer aria-label="Rodapé">
     <div class="container footer-grid">
       <div>
-        <div class="brand"><img src="images/logo.png" alt="Logo da Liga Empreendedora" /><span>Liga Empreendedora</span></div>
+        <div class="brand"><img src="./images/logo.png" alt="Logo da Liga Empreendedora" /><span>Liga Empreendedora</span></div>
         <div class="legal">© Liga Empreendedora da UFBA, 2025. Todos os direitos reservados.</div>
       </div>
       <div>
@@ -589,31 +494,71 @@
         <a href="#sobre">Sobre</a> · <a href="#cta-prosel">Chamada</a> · <a href="#impacto">Impacto</a> · <a href="#projetos">Projetos</a><br>
         <a href="#depoimentos">Depoimentos</a> · <a href="#parceiros">Nossos parceiros</a> · <a href="#faq">FAQ</a> · <a href="#contato">Contato</a>
       </div>
-      <div>
-        <strong>Legais</strong><br>
-        <a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a>
-      </div>
     </div>
   </footer>
 
   <script>
-    // Navegação mobile
+    // ===== Navegação mobile com painel fixo/rolável =====
     const toggle = document.getElementById('mobileToggle');
     const header = document.querySelector('header.site-header');
-    const navUl = document.querySelector('nav ul');
+    const navUl = document.getElementById('mainNav');
+
+    function openMobileMenu() {
+      const rect = header.getBoundingClientRect();
+      Object.assign(navUl.style, {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '12px',
+        padding: '12px',
+        marginTop: '0',
+        position: 'fixed',
+        left: '0',
+        right: '0',
+        top: `${Math.ceil(rect.bottom)}px`,
+        maxHeight: `calc(100dvh - ${Math.ceil(rect.bottom)}px - 12px)`,
+        overflow: 'auto',
+        background: 'var(--card)',
+        border: '1px solid var(--border)',
+        borderRadius: '12px',
+        boxShadow: 'var(--shadow)',
+        zIndex: '55'
+      });
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('mobile-open');
+    }
+
+    function closeMobileMenu() {
+      navUl.removeAttribute('style');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('mobile-open');
+    }
 
     toggle?.addEventListener('click', () => {
-      const open = navUl.style.display === 'flex';
-      navUl.style.display = open ? 'none' : 'flex';
-      navUl.style.flexDirection = 'column';
-      navUl.style.gap = '12px';
-      navUl.style.marginTop = '12px';
+      const isOpen = document.body.classList.contains('mobile-open');
+      if (isOpen) closeMobileMenu(); else openMobileMenu();
+    });
+
+    // Fecha o menu ao clicar num link
+    navUl.addEventListener('click', (e) => {
+      if (e.target.closest('a')) closeMobileMenu();
+    });
+
+    // Reposiciona/limpa ao redimensionar
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 980) {
+        closeMobileMenu();
+      } else if (document.body.classList.contains('mobile-open')) {
+        openMobileMenu(); // recalcula top/altura
+      }
     });
 
     // Shrink on scroll
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
       header.classList.toggle('shrink', y > 20);
+      if (document.body.classList.contains('mobile-open')) {
+        openMobileMenu(); // acompanha o cabeçalho sticky
+      }
     });
 
     // Contagem animada
@@ -640,22 +585,94 @@
     }, { threshold: 0.4 });
     counters.forEach(c => obs.observe(c));
 
-    // Carrossel de depoimentos
-    const carousel = document.getElementById('carousel');
+    // ===== INFINITE H-SCROLL (Projetos & Depoimentos) =====
+    function initInfiniteTrack(track) {
+      if (!track || track.dataset.infinite === '1') return;
+      const originals = Array.from(track.children);
+      if (!originals.length) return;
+
+      const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || 0);
+
+      const clone = (el) => { const c = el.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.tabIndex = -1; return c; };
+      const leftClones  = originals.map(clone);
+      const rightClones = originals.map(clone);
+      track.prepend(...leftClones);
+      track.append(...rightClones);
+
+      const blockWidth = (els) => els.reduce((acc, el, i) => {
+        const w = el.getBoundingClientRect().width;
+        return acc + w + (i < els.length - 1 ? gap : 0);
+      }, 0);
+
+      let prefixW = blockWidth(leftClones);
+      let originalsW = blockWidth(originals);
+      track.scrollLeft = prefixW;
+
+      const clampLoop = () => {
+        const sl = track.scrollLeft;
+        if (sl < prefixW) {
+          track.style.scrollBehavior = 'auto';
+          track.scrollLeft = sl + originalsW;
+          track.style.scrollBehavior = '';
+        } else if (sl >= prefixW + originalsW) {
+          track.style.scrollBehavior = 'auto';
+          track.scrollLeft = sl - originalsW;
+          track.style.scrollBehavior = '';
+        }
+      };
+
+      let ticking = false;
+      track.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => { clampLoop(); ticking = false; });
+          ticking = true;
+        }
+      });
+
+      let resizeTO;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTO);
+        resizeTO = setTimeout(() => {
+          prefixW   = blockWidth(leftClones);
+          originalsW = blockWidth(originals);
+          track.style.scrollBehavior = 'auto';
+          track.scrollLeft = prefixW;
+          track.style.scrollBehavior = '';
+        }, 120);
+      });
+
+      track.dataset.infinite = '1';
+    }
+
+    // Trilhos infinitos
+    const projectsTrack = document.getElementById('projectsTrack');
+    const testimonialsTrack = document.getElementById('carousel');
+    initInfiniteTrack(projectsTrack);
+    initInfiniteTrack(testimonialsTrack);
+
+    // Passos de scroll por cartão
+    function stepAmount(track) {
+      const first = track?.querySelector(':scope > *');
+      if (!first) return 320;
+      const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || 0);
+      const w = first.getBoundingClientRect().width;
+      return w + gap;
+    }
+
+    // Controles Depoimentos (∞)
     document.getElementById('prev')?.addEventListener('click', () => {
-      carousel.scrollBy({ left: -340, behavior: 'smooth' });
+      testimonialsTrack.scrollBy({ left: -stepAmount(testimonialsTrack), behavior: 'smooth' });
     });
     document.getElementById('next')?.addEventListener('click', () => {
-      carousel.scrollBy({ left: 340, behavior: 'smooth' });
+      testimonialsTrack.scrollBy({ left: stepAmount(testimonialsTrack), behavior: 'smooth' });
     });
 
-    // Carrossel de projetos
-    const track = document.getElementById('projectsTrack');
+    // Controles Projetos (∞)
     document.getElementById('projPrev')?.addEventListener('click', () => {
-      track.scrollBy({ left: -320, behavior: 'smooth' });
+      projectsTrack.scrollBy({ left: -stepAmount(projectsTrack), behavior: 'smooth' });
     });
     document.getElementById('projNext')?.addEventListener('click', () => {
-      track.scrollBy({ left: 320, behavior: 'smooth' });
+      projectsTrack.scrollBy({ left: stepAmount(projectsTrack), behavior: 'smooth' });
     });
 
     // Reduzir movimento
