@@ -8,7 +8,6 @@
   <meta name="description" content="Movimento universitário de inovação: projetos, mentorias, hackathons e networking. Inscreva-se no PROSEL." />
   <meta property="og:title" content="Liga Empreendedora da UFBA – Empreender na prática" />
   <meta property="og:description" content="Movimento universitário de inovação: projetos, mentorias, hackathons e networking. Inscreva-se no PROSEL." />
-  <!-- Para GitHub Pages funcione em qualquer subpasta, mantemos caminhos relativos nos assets. -->
   <meta property="og:type" content="website" />
   <meta property="og:image" content="./images/topo-prosel.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -203,17 +202,6 @@
 
     .proj-controls { display: flex; gap: 10px; margin-top: 12px; justify-content: flex-end; }
 
-    /* DEPOIMENTOS (∞) */
-    .testimonials { position: relative; }
-    .carousel {
-      display: flex; gap: 18px; overflow: hidden; scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch; touch-action: pan-x pinch-zoom; overscroll-behavior-x: contain;
-    }
-    .testimonial { min-width: 320px; flex: 0 0 320px; max-width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
-    .avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
-    .testimonial header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-    .carousel-controls { display: flex; gap: 10px; margin-top: 12px; }
-
     /* PARCEIROS */
     .partners { background: var(--grad-partners); border: 1px solid var(--border); border-left: 0; border-right: 0; color: #eaf7ff; }
     .partners h2 { color: #fff; text-align: center; }
@@ -248,7 +236,6 @@
 
     /* ===== MOBILE: ajustes do menu ===== */
     @media (max-width: 979px) {
-      /* Esconde o botão “Inscreva-se” do menu hamburger */
       .cta-inscrever { display: none !important; }
     }
 
@@ -275,7 +262,7 @@
       }
       .hero h1 { font-size: clamp(26px, 7vw, 32px); line-height: 1.15; }
       .hero p.sub { font-size: 16px; }
-      .card, .project-card, .testimonial { padding: 18px; border-radius: 18px; }
+      .card, .project-card { padding: 18px; border-radius: 18px; }
       .hero .actions .btn,
       .section-cta .btn,
       .cta-final .actions .btn,
@@ -297,11 +284,10 @@
           <li><a href="#cta-prosel">Chamada</a></li>
           <li><a href="#impacto">Impacto</a></li>
           <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#depoimentos">Depoimentos</a></li>
           <li><a href="#parceiros">Nossos parceiros</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#contato">Contato</a></li>
-          <li class="cta-inscrever"><a class="btn btn-primary" href="#cta-prosel">Inscreva-se</a></li>
+          <li class="cta-inscrever"><a class="btn btn-primary" href="https://forms.gle/ce6zmQPBGwZAgMSy9" target="_blank" rel="noopener">Inscreva-se</a></li>
         </ul>
       </nav>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu" aria-controls="mainNav" aria-expanded="false">
@@ -315,14 +301,14 @@
     <section class="hero" aria-label="Topo / Hero">
       <div class="container hero-inner">
         <div>
-          <a class="cta-prosel-top" href="https://forms.gle/" target="_blank" rel="noopener" aria-label="Ir para o formulário do PROSEL 2025.2">
+          <a class="cta-prosel-top" href="https://forms.gle/ce6zmQPBGwZAgMSy9" target="_blank" rel="noopener" aria-label="Ir para o formulário do PROSEL 2025.2">
             🚀 PROSEL 2025.2 ABERTO! (Clique aqui)
           </a>
 
           <h1>Liga Empreendedora da UFBA</h1>
           <p class="sub">Movimento universitário que conecta jovens ao empreendedorismo e à inovação prática.</p>
           <div class="actions">
-            <a class="btn btn-primary" href="#cta-prosel">Inscreva-se</a>
+            <a class="btn btn-primary" href="https://forms.gle/ce6zmQPBGwZAgMSy9" target="_blank" rel="noopener">Inscreva-se</a>
             <a class="btn btn-outline" href="https://www.instagram.com/ligaempreendedoraufba/" target="_blank" rel="noopener">Conheça mais</a>
           </div>
           <div class="microcopy">Comunidade ativa desde 2023 • Eventos, mentorias e projetos reais</div>
@@ -348,7 +334,7 @@
           <article class="card"><div class="value-icon" aria-hidden="true">🌍</div><h3 class="h3">Impactar é o nosso negócio</h3><p>Medimos impacto: pessoas transformadas, projetos entregues, parcerias reais e legado no ecossistema.</p></article>
         </div>
 
-        <div class="section-cta"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
+        <div class="section-cta"><a class="btn btn-gradient" href="https://forms.gle/ce6zmQPBGwZAgMSy9" target="_blank" rel="noopener">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
 
@@ -364,7 +350,7 @@
           <div class="metric"><div class="num" data-count="15">+0</div><div class="label">Empresas parceiras</div></div>
           <div class="metric"><div class="num" data-count="20">+0</div><div class="label">Pódios em hackathons</div></div>
         </div>
-        <div class="section-cta"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
+        <div class="section-cta"><a class="btn btn-gradient" href="https://forms.gle/ce6zmQPBGwZAgMSy9" target="_blank" rel="noopener">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
 
@@ -389,24 +375,7 @@
           <button class="btn btn-outline" id="projNext" aria-label="Ver próximos cartões">→</button>
         </div>
 
-        <div class="section-cta"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
-      </div>
-    </section>
-
-    <!-- DEPOIMENTOS (∞) -->
-    <section id="depoimentos" class="testimonials" aria-labelledby="depo-title">
-      <div class="container">
-        <h2 id="depo-title" class="section-title">Depoimentos</h2>
-        <div class="carousel" id="carousel">
-          <article class="testimonial"><header><img class="avatar" src="./images/logo.png" alt="Foto de perfil" /><div><strong>Ana Souza</strong><br/><small>Adm • 2024</small></div></header><p>Participar da Liga mudou minha forma de executar projetos – saí do teórico para o prático, com mentoria e networking de verdade.</p></article>
-          <article class="testimonial"><header><img class="avatar" src="./images/liga-visitas-colabore.jpeg" alt="Foto de Prof. Carlos" /><div><strong>Prof. Carlos</strong><br/><small>Docente UFBA</small></div></header><p>Como professor, vi alunos ganharem protagonismo e maturidade. A parceria com a Liga eleva o nível das disciplinas.</p></article>
-          <article class="testimonial"><header><img class="avatar" src="./images/networking-coworking.png" alt="Foto de Júlia, parceira" /><div><strong>Júlia Lima</strong><br/><small>Parceira • Startup X</small></div></header><p>A Liga entrega. Projetos com dono, prazos e resultados. É raro ver tanta execução consistente em ambiente universitário.</p></article>
-        </div>
-        <div class="carousel-controls">
-          <button class="btn btn-outline" id="prev" aria-label="Voltar depoimentos">←</button>
-          <button class="btn btn-outline" id="next" aria-label="Avançar depoimentos">→</button>
-        </div>
-        <div class="section-cta"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
+        <div class="section-cta"><a class="btn btn-gradient" href="https://forms.gle/ce6zmQPBGwZAgMSy9" target="_blank" rel="noopener">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
 
@@ -430,7 +399,7 @@
           <div class="partner"><img src="./images/marca-11.png" alt="Marca 11"></div>
         </div>
 
-        <div class="section-cta" style="justify-content:center"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
+        <div class="section-cta" style="justify-content:center"><a class="btn btn-gradient" href="https://forms.gle/ce6zmQPBGwZAgMSy9" target="_blank" rel="noopener">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
 
@@ -441,7 +410,7 @@
           <h2 id="cta-title" class="section-title">Seja protagonista da própria história.</h2>
           <p class="section-sub">Participe do nosso processo seletivo e aprenda empreendedorismo e inovação na prática.</p>
           <div class="actions">
-            <a class="btn btn-gradient" href="https://forms.gle/" target="_blank" rel="noopener">Inscreva-se no PROSEL 2025.2!</a>
+            <a class="btn btn-gradient" href="https://forms.gle/ce6zmQPBGwZAgMSy9" target="_blank" rel="noopener">Inscreva-se no PROSEL 2025.2!</a>
             <a class="btn btn-outline" href="#contato">Torne-se parceiro</a>
           </div>
         </div>
@@ -457,7 +426,7 @@
         <details><summary>Preciso ter ideia de negócio pronta?</summary><p>Não. Desenvolvemos base de empreendedorismo, liderança, pensamento criativo e inovação. A ideia pode surgir no caminho.</p></details>
         <details><summary>Como funcionam os times e projetos?</summary><p>Cada projeto é direcionado conforme demanda. Membros têm impacto real: contato com mentores, eventos e visitas a hubs de inovação.</p></details>
         <details><summary>Como os professores podem se envolver?</summary><p>Estamos abertos a parcerias: co-criação de aulas, mentorias e capacitações dentro das disciplinas.</p></details>
-        <div class="section-cta"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
+        <div class="section-cta"><a class="btn btn-gradient" href="https://forms.gle/ce6zmQPBGwZAgMSy9" target="_blank" rel="noopener">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
 
@@ -477,7 +446,7 @@
           </div>
         </div>
 
-        <div class="section-cta"><a class="btn btn-gradient" href="#cta-prosel">Inscreva-se no PROSEL 2025.2!</a></div>
+        <div class="section-cta"><a class="btn btn-gradient" href="https://forms.gle/ce6zmQPBGwZAgMSy9" target="_blank" rel="noopener">Inscreva-se no PROSEL 2025.2!</a></div>
       </div>
     </section>
   </main>
@@ -492,7 +461,7 @@
       <div>
         <strong>Seções</strong><br>
         <a href="#sobre">Sobre</a> · <a href="#cta-prosel">Chamada</a> · <a href="#impacto">Impacto</a> · <a href="#projetos">Projetos</a><br>
-        <a href="#depoimentos">Depoimentos</a> · <a href="#parceiros">Nossos parceiros</a> · <a href="#faq">FAQ</a> · <a href="#contato">Contato</a>
+        <a href="#parceiros">Nossos parceiros</a> · <a href="#faq">FAQ</a> · <a href="#contato">Contato</a>
       </div>
     </div>
   </footer>
@@ -585,7 +554,7 @@
     }, { threshold: 0.4 });
     counters.forEach(c => obs.observe(c));
 
-    // ===== INFINITE H-SCROLL (Projetos & Depoimentos) =====
+    // ===== INFINITE H-SCROLL para Projetos =====
     function initInfiniteTrack(track) {
       if (!track || track.dataset.infinite === '1') return;
       const originals = Array.from(track.children);
@@ -644,11 +613,9 @@
       track.dataset.infinite = '1';
     }
 
-    // Trilhos infinitos
+    // Trilho infinito somente para Projetos
     const projectsTrack = document.getElementById('projectsTrack');
-    const testimonialsTrack = document.getElementById('carousel');
     initInfiniteTrack(projectsTrack);
-    initInfiniteTrack(testimonialsTrack);
 
     // Passos de scroll por cartão
     function stepAmount(track) {
@@ -658,14 +625,6 @@
       const w = first.getBoundingClientRect().width;
       return w + gap;
     }
-
-    // Controles Depoimentos (∞)
-    document.getElementById('prev')?.addEventListener('click', () => {
-      testimonialsTrack.scrollBy({ left: -stepAmount(testimonialsTrack), behavior: 'smooth' });
-    });
-    document.getElementById('next')?.addEventListener('click', () => {
-      testimonialsTrack.scrollBy({ left: stepAmount(testimonialsTrack), behavior: 'smooth' });
-    });
 
     // Controles Projetos (∞)
     document.getElementById('projPrev')?.addEventListener('click', () => {
